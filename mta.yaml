@@ -7,6 +7,10 @@ modules:
     path: db
     requires:
       - name: hdi_db
+        properties:
+          name: movielens_api
+          url: '~{url}'
+          timeout: 3000000
   - name: js
     type: nodejs
     path: js
@@ -16,6 +20,16 @@ modules:
           url: '${default-url}'
     requires:
       - name: hdi_db
+  - name: html
+    type: html5
+    path: html
+    requires:
+      - name: js_api
+        group: destinations
+        properties:
+          name: movielens_api
+          url: '~{url}'
+          timeout: 3000000
 resources:
   - name: hdi_db
     parameters:
